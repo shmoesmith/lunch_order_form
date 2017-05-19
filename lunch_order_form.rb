@@ -1,3 +1,4 @@
+require 'pry'
 #user chooses from list of maim dishes
 #user chooses 2 side dishes
 #computer repeats order back to customer
@@ -16,32 +17,77 @@ class Entree
         @name = name
         @price = price
     end
+end
 
-entree1 = Entree.new("Traditional Ramen", 6.00)
-entree2 = Entree.new("Classic PB&J", 3.00)
-entree3 = Entree.new("Slice O'Pizza", 3.00)
+@entree1 = Entree.new("Traditional Ramen", 6.00)
+@entree2 = Entree.new("Classic PB&J", 3.00)
+@entree3 = Entree.new("Slice O'Pizza", 3.00)
 
 
 class Side 
     attr_accessor :name, :price
-    def initialize
+    def initialize(name, price)
         @name = name
         @price = price
     end
+end
 
-side4 = Side.new("Steamed Veggies", 1.00)
-side5 = Side.new("Salad", 2.00)
-side6 = Side.new("French Fries", 2.00)
-side7 = Side.new("Onion Rings", 3.00)
+@side4 = Side.new("Steamed Veggies", 1.00)
+@side5 = Side.new("Salad", 2.00)
+@side6 = Side.new("French Fries", 2.00)
+@side7 = Side.new("Onion Rings", 3.00)
+
+@food_ordered = []
+@total = 0
+
+def total_order
+    if @food_ordered.length < 3
+        choose_side
+    else
+        puts "\nYour Order:"
+        puts "---------------"
+        puts @food_ordered
+        puts "---------------"
+        puts "$#{@total}\n\n"
+    end
+end
 
 def choose_entree
     lunch_menu
+    puts "Enter the Entree you would like"
+    print"> "
+
+    entree_dish_choice = gets.strip
+
+    case entree_dish_choice
+        when "1"
+            @food_ordered << @entree1.name
+            @total = @total + @entree1.price
+    end
+
+    choose_side
 end
 
 
 def choose_side
     lunch_menu
+    puts "Enter the side you would like"
+    print "> "
+    
+    side_dish_choice = gets.strip
+
+    case side_dish_choice
+        when "4"
+            @food_ordered << @side4.name 
+            @total = @total + @side4.price
+        when "5"
+            @food_ordered << @side5.name
+            @total = @total + @side5.price
+    end
+    total_order
 end
+
+
 
 
 def lunch_menu
@@ -55,6 +101,7 @@ def lunch_menu
     puts "\t5. Salad (only slightly better) $2.00"
     puts "\t6. French Fries (now we are talkin!) $2.00"
     puts "\t7. Onion Rings $3.00"
-    puts "\n\n Choose one Entree, and two sides"
+    puts "\n\n Choose one Entree, and two Sides"
 end
 
+choose_entree
