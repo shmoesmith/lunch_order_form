@@ -1,9 +1,3 @@
-require 'pry'
-#user chooses from list of maim dishes
-#user chooses 2 side dishes
-#computer repeats order back to customer
-#computer total's order and displays total
-
 #BONUSES
 #user can choose as many add-ons as they want
 #user has wallet total they start with and they cannot exceed what they can pay for
@@ -21,7 +15,7 @@ end
 
 @entree1 = Entree.new("Traditional Ramen", 6.00)
 @entree2 = Entree.new("Classic PB&J", 3.00)
-@entree3 = Entree.new("Slice O'Pizza", 3.00)
+@entree3 = Entree.new("Slice O'Pizza", 4.00)
 
 
 class Side 
@@ -63,6 +57,14 @@ def choose_entree
         when "1"
             @food_ordered << @entree1.name
             @total = @total + @entree1.price
+        when "2"
+            @food_ordered << @entree2.name
+            @total = @total + @entree2.price
+        when "3"
+            @food_ordered << @entree3.name
+            @total = @total + @entree3.price
+        else
+            puts "Please enter a valid choice"
     end
 
     choose_side
@@ -83,6 +85,14 @@ def choose_side
         when "5"
             @food_ordered << @side5.name
             @total = @total + @side5.price
+        when "6"
+            @food_ordered << @side6.name
+            @total = @total + @side6.price
+        when "7"
+            @food_ordered << @side7.name
+            @total = @total + @side7.price
+        else
+            puts "Please choose a valid side dish"
     end
     total_order
 end
