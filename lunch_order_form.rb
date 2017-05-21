@@ -2,9 +2,6 @@
 require 'pry'
 #BONUSES
  #program is in a loop to keep asking the user to make new orders until they type 'quit' at any time
-#main dishes and side items have descriptions with them and the user has an option to view the description /nutritional facts before they order (hint: think hashes)
-#descriptions of food can have multiple options like nutritional facts, calories, fat content ect...(hint: think nested hashes)
-#display to the user not only their total but the total fat content / calories / carbs / ect...
 
 
 class Entree
@@ -40,6 +37,7 @@ end
 @food_ordered = []
 @total = 0
 @wallet = 0
+@calories = 0
 
 
 def total_order
@@ -47,8 +45,25 @@ def total_order
         puts "---------------"
         puts @food_ordered
         puts "---------------"
+        puts "Total Calories = #{@calories}"
+        puts "---------------"
         puts "$#{@total}\n\n"
+        puts "\n\n If this order is correct, please type 'quit' to submit your order and exit"
+        puts "If you are unhappy with your order and would like to make a new one, type 'new'"
+        
+        finalize = gets.strip
+        
+    if finalize == "quit"
         exit(0)
+    elsif finalize == "new"
+        @food_ordered.clear
+        @calories = 0
+        @total = 0
+        wallet
+    else
+        puts "enter a valid selection"
+        total_order
+    end
 end
 
 def fries_with_that
@@ -75,6 +90,7 @@ def choose_entree
                     @food_ordered << @entree1.name
                     @total = @total + @entree1.price
                     @wallet = @wallet - @entree1.price
+                    @calories = @calories + @entree1.calories
             else
                 puts "You will not have enough money to order two sides."
                 puts "Please choose a different entree"
@@ -86,6 +102,7 @@ def choose_entree
                     @food_ordered << @entree2.name
                     @total = @total + @entree2.price
                     @wallet = @wallet - @entree2.price
+                    @calories = @calories + @entree2.calories
             else
                 puts "You will not have enough money to order two sides."
                 puts "Please choose a different entree"
@@ -97,6 +114,7 @@ def choose_entree
                     @food_ordered << @entree3.name
                     @total = @total + @entree3.price
                     @wallet = @wallet - @entree3.price
+                    @calories = @calories + @entree3.calories
             else
                 puts "You will not have enough money to order two sides."
                 puts "Please choose a different entree"
@@ -127,6 +145,7 @@ def choose_side2
                 @food_ordered << @side4.name 
                 @total = @total + @side4.price
                 @wallet = @wallet - @side4.price
+                @calories = @calories + @side4.calories
             else
                 puts "You do not have enough money for that item"
                 puts "Please choose a different item"
@@ -138,6 +157,7 @@ def choose_side2
                 @food_ordered << @side5.name
                 @total = @total + @side5.price
                 @wallet = @wallet - @side5.price
+                @calories = @calories + @side5.calories
             else
                 puts "You do not have enough money for that item"
                 puts "Please choose a different item"
@@ -149,6 +169,7 @@ def choose_side2
                 @food_ordered << @side6.name
                 @total = @total + @side6.price
                 @wallet = @wallet - @side6.price
+                @calories = @calories + @side6.calories
             else
                 puts "You do not have enough money for that item"
                 puts "Please choose a different item"
@@ -160,6 +181,7 @@ def choose_side2
                 @food_ordered << @side7.name
                 @total = @total + @side7.price
                 @wallet = @wallet - @side7.price
+                @calories = @calories + @side7.calories
             else
                 puts "You do not have enough money for that item"
                 puts "Please choose a different item"
@@ -186,6 +208,7 @@ def choose_side1
                 @food_ordered << @side4.name 
                 @total = @total + @side4.price
                 @wallet = @wallet - @side4.price
+                 @calories = @calories + @side4.calories
             else
                 puts "You do not have enough money for that item"
                 puts "Please choose a different item"
@@ -197,6 +220,7 @@ def choose_side1
                 @food_ordered << @side5.name
                 @total = @total + @side5.price
                 @wallet = @wallet - @side5.price
+                @calories = @calories + @side5.calories
             else
                 puts "You do not have enough money for that item plus another"
                 puts "Please choose a different item"
@@ -208,6 +232,7 @@ def choose_side1
                 @food_ordered << @side6.name
                 @total = @total + @side6.price
                 @wallet = @wallet - @side6.price
+                @calories = @calories + @side6.calories
             else
                 puts "You do not have enough money for that item plus another"
                 puts "Please choose a different item"
@@ -219,6 +244,7 @@ def choose_side1
                 @food_ordered << @side7.name
                 @total = @total + @side7.price
                 @wallet = @wallet - @side7.price
+                @calories = @calories + @side7.calories
             else
                 puts "You do not have enough money for that item plus another"
                 puts "Please choose a different item"
