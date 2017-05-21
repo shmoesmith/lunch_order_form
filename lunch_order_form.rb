@@ -60,6 +60,7 @@ end
 
 def choose_entree
     lunch_menu
+    puts "You have $#{@wallet} in your wallet"
     puts "Enter the Entree you would like"
     print"> "
 
@@ -108,6 +109,7 @@ end
 
 def choose_side2
     lunch_menu
+    puts "You have $#{@wallet} left in your wallet"
     puts "Enter the next side you would like"
     print "> "
     
@@ -166,6 +168,7 @@ end
 
 def choose_side1
     lunch_menu
+    puts "You have $#{@wallet} left in your wallet"
     puts "Enter the first side you would like"
     print "> "
     
