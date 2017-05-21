@@ -1,7 +1,4 @@
 
-require 'pry'
-#BONUSES
- #program is in a loop to keep asking the user to make new orders until they type 'quit' at any time
 
 
 class Entree
