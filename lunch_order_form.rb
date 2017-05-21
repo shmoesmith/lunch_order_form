@@ -1,7 +1,6 @@
 
 require 'pry'
 #BONUSES
-#user has wallet total they start with and they cannot exceed what they can pay for
  #program is in a loop to keep asking the user to make new orders until they type 'quit' at any time
 #main dishes and side items have descriptions with them and the user has an option to view the description /nutritional facts before they order (hint: think hashes)
 #descriptions of food can have multiple options like nutritional facts, calories, fat content ect...(hint: think nested hashes)
@@ -9,30 +8,34 @@ require 'pry'
 
 
 class Entree
-    attr_accessor :name, :price
-    def initialize(name, price)
+    attr_accessor :name, :price, :calories, :description
+    def initialize(name, price, calories, description)
         @name = name
         @price = price
+        @calories = calories
+        @description = description
     end
 end
 
-@entree1 = Entree.new("Traditional Ramen", 6.00)
-@entree2 = Entree.new("Classic PB&J", 3.00)
-@entree3 = Entree.new("Slice O'Pizza", 4.00)
+@entree1 = Entree.new("Traditional Ramen", 6.00, 550, "Ramen noodles in a pork broth with sliced pork, soft boiled egg, shallots, and mushrooms")
+@entree2 = Entree.new("Classic PB&J", 3.00, 250, "Wheat bread with creamy peanut butter and homemade strawberry jam")
+@entree3 = Entree.new("Slice O'Pizza", 4.00, 300, "A slice of classic pepperoni pizza")
 
 
 class Side 
-    attr_accessor :name, :price
-    def initialize(name, price)
+    attr_accessor :name, :price, :calories, :description
+    def initialize(name, price, calories, description)
         @name = name
         @price = price
+        @calories = calories
+        @description = description
     end
 end
 
-@side4 = Side.new("Steamed Veggies", 1.00)
-@side5 = Side.new("Salad", 2.00)
-@side6 = Side.new("French Fries", 2.00)
-@side7 = Side.new("Onion Rings", 3.00)
+@side4 = Side.new("Steamed Veggies", 1.00, 80, "A mix of steamed carrots, broccoli, cauliflour, and beans")
+@side5 = Side.new("Salad", 2.00, 180, "Seasonal greens, with cherry tomatoes, cucumbers, and crutons, tossed in light italian dressing")
+@side6 = Side.new("French Fries", 2.00, 380, "Traditional thin sliced french fries")
+@side7 = Side.new("Onion Rings", 3.00, 480, "onions that have been sliced into rings, breaded and deep fried")
 
 @food_ordered = []
 @total = 0
@@ -60,8 +63,8 @@ end
 
 def choose_entree
     lunch_menu
-    puts "You have $#{@wallet} in your wallet"
-    puts "Enter the Entree you would like"
+    puts "\nYou have $#{@wallet} in your wallet"
+    puts "\nEnter the Entree you would like"
     print"> "
 
     entree_dish_choice = gets.strip
@@ -99,6 +102,9 @@ def choose_entree
                 puts "Please choose a different entree"
                 choose_entree
             end
+        when "n"
+            food_descriptions
+
         else
             puts "Please enter a valid choice"
             choose_entree
@@ -237,8 +243,61 @@ def lunch_menu
     puts "\t5. Salad (only slightly better) $2.00"
     puts "\t6. French Fries (now we are talkin!) $2.00"
     puts "\t7. Onion Rings $3.00"
-
+    puts "\n To view descriptions and nutritional info before ordering, type 'n'"
 end
+
+def food_descriptions
+    puts "\nENTREES\n"
+    puts "\t1. Traditional Ramen $6.00"
+    puts "\t2. Classic PB&J $3.00"
+    puts "\t3. Slice O'Pizza $4.00"
+    puts "\nSIDES\n"
+    puts "\t4. Steamed Veggies (yuck!) $1.00"
+    puts "\t5. Salad (only slightly better) $2.00"
+    puts "\t6. French Fries (now we are talkin!) $2.00"
+    puts "\t7. Onion Rings $3.00"
+    puts "\n\t8. Back to order form"
+    puts "\nChoose the item you would like to know more about"
+
+    description_choice = gets.strip
+
+    case description_choice
+        when "1"
+            puts @entree1.description
+            puts "calories #{@entree1.calories}"
+            food_descriptions
+        when "2"
+            puts @entree2.description
+            puts "calories #{@entree2.calories}"
+            food_descriptions
+        when "3"
+            puts @entree3.description
+            puts "calories #{@entree2.calories}"
+            food_descriptions
+        when "4"
+            puts @side4.description
+            puts "calories #{@side4.calories}"
+            food_descriptions
+        when "5"
+            puts @side5.description
+            puts "calories #{@side5.calories}"
+            food_descriptions
+        when "6"
+            puts @side6.description
+            puts "calories #{@side6.calories}"
+            food_descriptions
+        when "7"
+            puts @side7.description
+            puts "calories #{@side7.calories}"
+            food_descriptions
+        when "8"
+            choose_entree
+        else 
+            puts "enter a valid selection"
+            food_descriptions
+    end
+    
+end   
 
 def wallet
     puts "Please enter how much money you have to spend"
