@@ -153,7 +153,7 @@ def choose_side2
             if @wallet >= @side7.price 
                 @food_ordered << @side7.name
                 @total = @total + @side7.price
-                @wallet = @wallet - side7.price
+                @wallet = @wallet - @side7.price
             else
                 puts "You do not have enough money for that item"
                 puts "Please choose a different item"
